@@ -1,0 +1,2 @@
+# idlemancery
+Automator Idlemancery script
