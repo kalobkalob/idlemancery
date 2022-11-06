@@ -4,6 +4,8 @@
 // @version      1
 // @description  Automates Idlemancery
 // @author       https://github.com/kalobkalob/idlemancery
+// @downloadURL  https://github.com/kalobkalob/idlemancery/raw/main/idlemanceryautomation.user.js
+// @updateURL    https://github.com/kalobkalob/idlemancery/raw/main/idlemanceryautomation.user.js
 // @match        https://strangemattergaming.itch.io/idlemancery
 // @match        https://v6p9d9t4.ssl.hwcdn.net/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=itch.io
@@ -32,7 +34,6 @@ Tabs
         * Set some order to invest then increment that color by that amount before switching.
     * Turn tab green if over 51 creatures detected.
     * Total banner count.
-    * Total percentage effect.
   Research
   Battle
   Automator
@@ -75,19 +76,14 @@ class Banners {
                                    getTierLevels(){
                                        let levels=[[50,[45,1]],[100,[80,4]],[200,[150,10]],[500,[330, 34]],[1000,[540,72,4]],[2000,[965,152,11]],[5000,[2160,373,39]],
                                                    [10000,[3885,673,85,5]],[20000,[6985,1243,182,18]],[50000,[15705,2914,459,51,3]],[100000,[28255,5084,908,139,10]],
-                                                   [200000,[50850,10255,1790,285,28]],[500000,[127105,22704,4140,657,88,6]],[1000000,[228785,42358,7832,1374, 202, 21]]]
-                                       .filter(l=>l[0]<=this.getTotalTiers());
-                                       switch(levels.length){
-                                           case 0:
-                                               break;
-                                           case 1:
-                                               levels=levels[0][1]
-                                               break;
-                                           default:
-                                               levels=levels.pop();
-                                               levels=levels[1];
+                                                   [200000,[50850,10255,1790,285,28]],[500000,[127105,22704,4140,657,88,6]],[1000000,[228785,42358,7832,1374, 202, 21]]];
+                                       var out;
+                                       var total = this.getTotalTiers();
+                                       for(let j=0,len=levels.length;j<len;j++){
+                                           out = levels[j][1];
+                                           if(levels[j][0]>total) break;
                                        }
-                                       return levels;
+                                       return out;
                                    },
                                    getTotalTiers(){
                                        let total = this.tiers[0].amount;
@@ -109,11 +105,8 @@ class Banners {
                                    convertToUpper(){
                                        console.log("Converting");
                                        for(let i=1,len=this.getTierLevels().length;i<len;i++){
-                                           if(this.getTierLevels()[i]>this.tiers[i].amount)this.tiers[i].click();
+                                           if(this.tiers[i-1].amount>this.getTierLevels()[i-1]&&this.tiers[i].amount<this.getTierLevels()[i])this.tiers[i].click();
                                        }
-                                       //console.log(this);
-                                       //console.log(this.getTotalTiers());
-                                       //console.log(this.getTierLevels());
                                    }
                                   });
                 //out.total = [...out.amount].map((a,i)=>a*Math.pow(5,i+1))
