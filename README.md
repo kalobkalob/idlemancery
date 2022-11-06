@@ -5,10 +5,15 @@ Current Features
  * Will Automatically convert banners to the next tier according to a guide provided in Strange's discord channel.
 
 TODO
+
 	Tabs
+
 	  Action
+
 	  Shop
+
 	  Learning
+	  
 	    * Cost of increasing is shown in xp. Automatically balance energy to a certain percent to learning.
 
 	  Creatures
