@@ -1,5 +1,6 @@
 # idlemancery
 Idlemancery automator script
+This script is tested with the extension Tampermonkey. To install go open the script then click on the raw button. Tampermonkey will then automatically allow you to install it.
 
 Current Features
  * Will Automatically convert banners to the next tier according to a guide provided in Strange's discord channel.
@@ -13,7 +14,7 @@ TODO
 	  Shop
 
 	  Learning
-	  
+
 	    * Cost of increasing is shown in xp. Automatically balance energy to a certain percent to learning.
 
 	  Creatures
